@@ -1,0 +1,17 @@
+# Dépendances
+node_modules/
+vendor/
+
+# Fichiers de build
+dist/
+build/
+
+# Fichiers d’environnement
+.env
+.env.local
+*.ini
+
+# OS / éditeur
+.DS_Store
+.vscode/
+.idea/

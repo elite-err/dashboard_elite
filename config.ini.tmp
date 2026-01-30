@@ -1,0 +1,25 @@
+; ==========================================================
+; Exemple de configuration – Elite Dashboard
+; Copiez ce fichier en config.ini et adaptez les valeurs
+; ==========================================================
+
+[odoo]
+; URL de votre instance Odoo (sans slash final)
+url = https://mycompany.odoo.com
+
+; Nom de la base de données Odoo
+db = mycompany-prod
+
+; Compte technique ou utilisateur API
+login = api.user@mycompany.com
+
+; Mot de passe ou clé API (NE PAS COMMITTER LE VRAI)
+password = CHANGE_ME
+
+; Timeout des appels Odoo (secondes)
+timeout = 15
+
+
+[app]
+; Durée du cache local (secondes)
+cache_ttl = 10
