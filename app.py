@@ -265,15 +265,25 @@ def deliveries():
             p["partner_name"] = partner[1] if isinstance(partner, list) and len(partner) >= 2 else ""
 
             st = (p.get("state") or "").lower()
+            confirmed = bool(p.get("x_customer_confirmation"))
+
             if st == "done":
+                # ✅ done = vert (prioritaire)
                 p["row_class"] = "list-group-item-success"
                 p["badge_class"] = "text-bg-success"
+
             elif st == "cancel":
                 p["row_class"] = "list-group-item-danger"
                 p["badge_class"] = "text-bg-danger"
+
             else:
-                p["row_class"] = "list-group-item-secondary"
-                p["badge_class"] = "text-bg-secondary"
+                # ✅ pas done : bleu si confirmé, sinon gris
+                if confirmed:
+                    p["row_class"] = "list-group-item-primary"
+                    p["badge_class"] = "text-bg-primary"
+                else:
+                    p["row_class"] = "list-group-item-secondary"
+                    p["badge_class"] = "text-bg-secondary"
 
             pickings_by_id[p["id"]] = p
 

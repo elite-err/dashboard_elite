@@ -5,6 +5,7 @@ vendor/
 # Fichiers de build
 dist/
 build/
+venv/
 
 # Fichiers d’environnement
 .env
