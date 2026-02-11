@@ -266,11 +266,16 @@ def deliveries():
 
             st = (p.get("state") or "").lower()
             confirmed = bool(p.get("x_customer_confirmation"))
-
+            
             if st == "done":
                 # ✅ done = vert (prioritaire)
                 p["row_class"] = "list-group-item-success"
                 p["badge_class"] = "text-bg-success"
+            
+            elif st == "waiting":
+                # waiting = jaune
+                    p["row_class"] = "list-group-item-waiting"
+                    p["badge_class"] = "text-bg-waiting"
 
             elif st == "cancel":
                 p["row_class"] = "list-group-item-danger"
