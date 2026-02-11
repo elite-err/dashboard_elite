@@ -110,18 +110,22 @@
 
   #nav_controls {
     position: fixed;
-    bottom: 220px;
+    top: 50%;
+    transform: translateY(-50%);
     right: 40px;
     z-index: 999;
     display: flex;
-    gap: 15px;
+    flex-direction: column;
+    gap: 20px;
     align-items: center;
+    justify-content: center;
     background: white;
-    padding: 14px 24px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    font-size: 1.2rem;
+    padding: 30px 24px;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+    font-size: 1.3rem;
     font-weight: 600;
+    min-height: 150px;
   }
 
   footer {
