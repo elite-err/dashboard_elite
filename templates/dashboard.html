@@ -31,24 +31,43 @@
   }
 
   body {
-    padding-bottom: 280px; /* réserve l'espace pour la footer fixed */
+    padding-bottom: 200px; /* réserve l'espace pour la footer fixed */
   }
 
   .container-fluid {
     height: calc(100vh - 280px);
-    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   #deliveries_container {
-    height: 100%;
+    width: 100%;
+    max-width: 100%;
   }
 
   #deliveries_container .col-12 {
-    height: 100%;
+    height: auto;
   }
 
   #deliveries_container .card {
-    height: 100%;
+    height: auto;
+    max-height: calc(100vh - 350px);
+    overflow-y: auto;
+  }
+
+  #nav_controls {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 999;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
 
   footer {
@@ -79,8 +98,10 @@
 </head>
 
 <body class="bg-light">
-  <div class="container-fluid p-4">
+  <!-- Navigation controls -->
+  <div id="nav_controls"></div>
 
+  <div class="container-fluid p-4">
     <main>
       <!-- Contenu principal -->
       <div class="row g-3" id="deliveries_container">

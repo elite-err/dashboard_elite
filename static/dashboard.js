@@ -82,6 +82,9 @@ function renderCustomerConfirmationKpi(k) {
   `;
 }
 
+let allCards = [];
+let currentCardIndex = 0;
+
 function renderCard(card) {
   const header = `
     <div class="card-header bg-white">
@@ -158,9 +161,10 @@ async function refreshDeliveries() {
 
   try {
     const data = await fetch("/deliveries").then(r => r.json());
-    const cards = data.cards || [];
+    allCards = data.cards || [];
+    currentCardIndex = 0;
 
-    if (!cards.length) {
+    if (!allCards.length) {
       container.innerHTML = `
         <div class="col-12">
           <div class="card shadow-sm">
@@ -168,11 +172,7 @@ async function refreshDeliveries() {
           </div>
         </div>`;
     } else {
-      container.innerHTML = cards.map(c => `
-        <div class="col-12 col-lg-6">
-          ${renderCard(c)}
-        </div>
-      `).join("");
+      displayCurrentCard();
     }
 
     lastUpdate.textContent = "Dernière mise à jour : " + nowText();
@@ -186,9 +186,43 @@ async function refreshDeliveries() {
   }
 }
 
-const refreshBtn = document.getElementById("refresh_btn");
-if (refreshBtn) {
-  refreshBtn.addEventListener("click", refreshDeliveries);
+function displayCurrentCard() {
+  const container = document.getElementById("deliveries_container");
+  const navContainer = document.getElementById("nav_controls");
+  
+  if (!allCards.length) return;
+
+  const card = allCards[currentCardIndex];
+  container.innerHTML = `
+    <div class="col-12">
+      ${renderCard(card)}
+    </div>
+  `;
+
+  // Afficher les contrôles de navigation
+  navContainer.innerHTML = `
+    <button id="prev_btn" class="btn btn-sm btn-secondary" ${currentCardIndex === 0 ? 'disabled' : ''}>
+      <i class="fa-solid fa-chevron-left"></i> Précédent
+    </button>
+    <span class="text-muted mx-2">${currentCardIndex + 1} / ${allCards.length}</span>
+    <button id="next_btn" class="btn btn-sm btn-secondary" ${currentCardIndex === allCards.length - 1 ? 'disabled' : ''}>
+      Suivant <i class="fa-solid fa-chevron-right"></i>
+    </button>
+  `;
+
+  document.getElementById("prev_btn").addEventListener("click", () => {
+    if (currentCardIndex > 0) {
+      currentCardIndex--;
+      displayCurrentCard();
+    }
+  });
+
+  document.getElementById("next_btn").addEventListener("click", () => {
+    if (currentCardIndex < allCards.length - 1) {
+      currentCardIndex++;
+      displayCurrentCard();
+    }
+  });
 }
 
 // Auto-scroll de bas en haut et inversement (pour les écrans sans scroll physique)
