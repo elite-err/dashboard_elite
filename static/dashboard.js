@@ -197,7 +197,7 @@ function displayCurrentCard() {
   `;
 
   // Afficher les contrôles de navigation
-  navContainer.innerHTML = `<span class="text-muted mx-2">${currentCardIndex + 1} / ${allCards.length}</span>`;
+  navContainer.innerHTML = `<span class="text-muted mx-2" style="font-size: 1.65rem;">${currentCardIndex + 1} / ${allCards.length}</span>`;
 }
 
 const shownextCard = () => {
