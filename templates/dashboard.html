@@ -23,7 +23,7 @@
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
-    font-size: 28px;
+    font-size: 24px;
     color: #2f2f2f;
     z-index: 2;
     pointer-events: none;
@@ -39,9 +39,7 @@
     display: flex;
     align-items: stretch;
     justify-content: center;
-    padding: 20px 40px;
-    max-width: 1600px;
-    margin: 0 auto;
+    padding: 10px;
   }
 
   #deliveries_container {
@@ -62,22 +60,12 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    border-radius: 12px;
+    border-radius: 8px;
   }
 
   #deliveries_container .card-header {
-    padding: 2rem 2.5rem;
+    padding: 1.5rem;
     flex-shrink: 0;
-    border-bottom: 2px solid #f0f0f0;
-  }
-
-  #deliveries_container .card-header .fw-bold {
-    font-size: 1.8rem !important;
-    margin-bottom: 0.5rem;
-  }
-
-  #deliveries_container .card-header .text-muted {
-    font-size: 1.3rem !important;
   }
 
   #deliveries_container .card-body {
@@ -89,43 +77,26 @@
   #deliveries_container .list-group-item {
     border-left: none;
     border-right: none;
-    border-bottom: 1px solid #f0f0f0;
-    padding: 1.75rem 2rem !important;
-    font-size: 1.2rem;
   }
 
   #deliveries_container .list-group-item:first-child {
     border-top: none;
   }
 
-  #deliveries_container .list-group-item:last-child {
-    border-bottom: none;
-  }
-
-  #deliveries_container .badge {
-    font-size: 0.95rem;
-    padding: 0.6rem 1rem;
-    white-space: nowrap;
-  }
-
   #nav_controls {
     position: fixed;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 40px;
+    top: 20px;
+    right: 20px;
     z-index: 999;
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    gap: 10px;
     align-items: center;
-    justify-content: center;
     background: white;
-    padding: 30px 24px;
-    border-radius: 12px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
-    font-size: 1.3rem;
+    padding: 12px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 1.1rem;
     font-weight: 600;
-    min-height: 150px;
   }
 
   footer {
@@ -148,19 +119,6 @@
 
   footer .card-header {
     border-radius: 0;
-    padding: 1.25rem 2rem;
-  }
-
-  footer .card-body {
-    padding: 1.5rem 2rem;
-  }
-
-  footer .badge {
-    font-size: 1rem;
-  }
-
-  footer .text-muted {
-    font-size: 1rem;
   }
 </style>
 
