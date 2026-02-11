@@ -213,11 +213,8 @@ const shownextCard = () => {
   if (currentCardIndex < allCards.length - 1) {
     currentCardIndex++;
   } else {
-    currentCardIndex--;
+    currentCardIndex = 0;
   }
-
-  if (currentCardIndex < 0) currentCardIndex = 0;
-  if (currentCardIndex >= allCards.length) currentCardIndex = allCards.length - 1;
 
   displayCurrentCard();
 };
