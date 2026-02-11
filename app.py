@@ -274,8 +274,8 @@ def deliveries():
             
             elif st == "waiting" or st == "confirmed":
                 # waiting = jaune
-                p["row_class"] = "list-group-item-waiting"
-                p["badge_class"] = "text-bg-waiting"
+                p["row_class"] = "list-group-item-warning"
+                p["badge_class"] = "text-bg-warning"
 
             elif st == "cancel":
                 p["row_class"] = "list-group-item-danger"
