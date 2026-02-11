@@ -162,7 +162,11 @@ async function refreshDeliveries() {
   try {
     const data = await fetch("/deliveries").then(r => r.json());
     allCards = data.cards || [];
-    currentCardIndex = 0;
+    
+    // ✅ Préserver l'index courant si possible
+    if (currentCardIndex >= allCards.length) {
+      currentCardIndex = 0;
+    }
 
     if (!allCards.length) {
       container.innerHTML = `
@@ -203,24 +207,25 @@ function displayCurrentCard() {
   navContainer.innerHTML = `<span class="text-muted mx-2">${currentCardIndex + 1} / ${allCards.length}</span>`;
 }
 
-var goingBackCard = false;
-shownextCard = () => {
+const shownextCard = () => {
+  if (!allCards.length) return;
+  
   if (currentCardIndex < allCards.length - 1) {
-    goingBackCard = false;
-  } else {
-    goingBackCard = true;
-  }
-
-  if(goingBackCard) {
-    currentCardIndex--;
-  }else{
     currentCardIndex++;
+  } else {
+    currentCardIndex--;
   }
 
-  displayCurrentCard()
+  if (currentCardIndex < 0) currentCardIndex = 0;
+  if (currentCardIndex >= allCards.length) currentCardIndex = allCards.length - 1;
+
+  displayCurrentCard();
 };
 
-
 refreshDeliveries();
+
+// ✅ Rafraîchissement tous les 10s
 setInterval(refreshDeliveries, 10000);
+
+// ✅ Changement de slide tous les 15s (décalé pour éviter les conflits)
 setInterval(shownextCard, 15000);
