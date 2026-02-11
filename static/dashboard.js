@@ -191,6 +191,16 @@ if (refreshBtn) {
   refreshBtn.addEventListener("click", refreshDeliveries);
 }
 
+// Source - https://stackoverflow.com/a/9837823
+// Posted by Michael Zaporozhets, modified by community. See post 'Timeline' for change history
+// Retrieved 2026-02-11, License - CC BY-SA 3.0
+function pageScroll() {
+    window.scrollBy(0,1);
+    scrolldelay = setTimeout(pageScroll,10);
+}
+
+
 refreshDeliveries();
 setInterval(refreshDeliveries, 10000);
+pageScroll();
 
