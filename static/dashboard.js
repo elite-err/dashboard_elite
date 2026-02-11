@@ -194,8 +194,17 @@ if (refreshBtn) {
 // Source - https://stackoverflow.com/a/9837823
 // Posted by Michael Zaporozhets, modified by community. See post 'Timeline' for change history
 // Retrieved 2026-02-11, License - CC BY-SA 3.0
+var scrollIsDown = false;
 function pageScroll() {
-    window.scrollBy(0,1);
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight) {
+        scrollIsDown = true;
+    }
+
+    if (scrollIsDown)
+      window.scrollBy(0, 1);
+    else
+      window.scrollBy(0, -1);
+    
     scrolldelay = setTimeout(pageScroll,10);
 }
 
