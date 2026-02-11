@@ -191,6 +191,7 @@ if (refreshBtn) {
   refreshBtn.addEventListener("click", refreshDeliveries);
 }
 
+// Auto-scroll de bas en haut et inversement (pour les écrans sans scroll physique)
 var scrollIsDown = false;
 function pageScroll() {
     // Si on est en bas -> on remonte
@@ -213,5 +214,3 @@ function pageScroll() {
 
 refreshDeliveries();
 setInterval(refreshDeliveries, 10000);
-pageScroll();
-
