@@ -186,29 +186,28 @@ async function refreshDeliveries() {
 function displayCurrentCard() {
   const container = document.getElementById("deliveries_container");
   const navContainer = document.getElementById("nav_controls");
-  
+
   if (!allCards.length) return;
 
-  playAnimation(container.firstElementChild); // Animer la nouvelle carte
-
   const card = allCards[currentCardIndex];
-  container.innerHTML = `
-    <div class="col-12">
-      ${renderCard(card)}
-    </div>
-  `;
 
-  // Afficher les contrôles de navigation
+  // Créer un wrapper pour la nouvelle carte
+  const newCardWrapper = document.createElement("div");
+  newCardWrapper.className = "col-12 card-fade"; // opacité 0 au départ
+  newCardWrapper.innerHTML = renderCard(card);
+
+  // Ajouter au DOM AVANT de déclencher la transition
+  container.innerHTML = ""; // vide l’ancienne carte
+  container.appendChild(newCardWrapper);
+
+  // Forcer le navigateur à calculer les styles avant d'ajouter 'show'
+  void newCardWrapper.offsetWidth;
+
+  // Ajouter la classe pour fade-in
+  newCardWrapper.classList.add("show");
+
+  // Mettre à jour le compteur
   navContainer.innerHTML = `<span class="text-muted mx-2" style="font-size: 1.65rem;">${currentCardIndex + 1} / ${allCards.length}</span>`;
-}
-
-function playAnimation(element) {
-  element.classList.add("animate-slideFade");
-
-  //Pour pouvoir rejouer l'animation plus tard :
-  element.addEventListener("animationend", () => {
-    element.classList.remove("animate-slideFade");
-  }, { once: true });
 }
 
 const shownextCard = () => {
