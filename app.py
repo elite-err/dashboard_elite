@@ -319,7 +319,6 @@ def deliveries():
                         # retard -> badge heure rouge
                         p["time_badge_class"] = "text-bg-danger"
 
-
     # 4) Résoudre les chauffeurs (x_drivers)
     all_emp_ids = set()
     for d in deliveries:
