@@ -168,25 +168,37 @@
   }
 
   footer .card-body {
-    padding: 1.5rem 2rem;
+    padding: 2rem 2.5rem;
   }
 
   footer .badge {
-    font-size: 1rem;
+    font-size: 1.1rem;
+    padding: 0.7rem 1.2rem;
   }
 
   footer .d-flex {
     align-items: center;
-    gap: 0.75rem;
+    gap: 1rem;
   }
 
-  footer .text-muted {
-    color: #adb5bd !important;
-    font-size: 0.95rem;
+  footer .d-flex span:first-child {
+    min-width: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  footer .border-top {
-    border-top: 1px solid #3d4451 !important;
+  footer .d-flex span:last-child {
+    font-size: 1rem;
+  }
+
+  footer .row.g-3 {
+    row-gap: 1.5rem !important;
+  }
+
+  footer .col-md-6.col-lg-4 {
+    display: flex;
+    align-items: center;
   }
 
   /* Scrollbar styling */
@@ -231,38 +243,38 @@
     <!-- Legend for status colors -->
     <div class="card">
       <div class="card-header bg-dark text-white">
-        <h5 class="mb-0">Légende des statuts</h5>
+        <h5 class="mb-0" style="font-size: 1.3rem;">Légende des statuts</h5>
       </div>
       <div class="card-body p-4">
         <div class="row g-3">
           <div class="col-md-6 col-lg-4">
             <div class="d-flex align-items-center gap-2">
               <span class="badge text-bg-success">●</span>
-              <span><strong>Terminé</strong> - Livraison complétée</span>
+              <span style="font-size: 1rem;"><strong>Terminé</strong> - Livraison complétée</span>
             </div>
           </div>
           <div class="col-md-6 col-lg-4">
             <div class="d-flex align-items-center gap-2">
               <span class="badge text-bg-info">●</span>
-              <span><strong>Prêt</strong> - Assigné et prêt pour la livraison</span>
+              <span style="font-size: 1rem;"><strong>Prêt</strong> - Assigné et prêt pour la livraison</span>
             </div>
           </div>
           <div class="col-md-6 col-lg-4">
             <div class="d-flex align-items-center gap-2">
               <span class="badge text-bg-warning">●</span>
-              <span><strong>En attente</strong> - En attente d'une autre opération</span>
+              <span style="font-size: 1rem;"><strong>En attente</strong> - En attente d'une autre opération</span>
             </div>
           </div>
           <div class="col-md-6 col-lg-4">
             <div class="d-flex align-items-center gap-2">
               <span class="badge text-bg-secondary">●</span>
-              <span><strong>Brouillon</strong> - En cours de préparation</span>
+              <span style="font-size: 1rem;"><strong>Brouillon</strong> - En cours de préparation</span>
             </div>
           </div>
           <div class="col-md-6 col-lg-4">
             <div class="d-flex align-items-center gap-2">
               <span class="badge text-bg-danger">●</span>
-              <span><strong>Annulé</strong> - Livraison annulée</span>
+              <span style="font-size: 1rem;"><strong>Annulé</strong> - Livraison annulée</span>
             </div>
           </div>
         </div>
@@ -272,10 +284,10 @@
     <!-- Footer info -->
     <div class="bg-light p-3 border-top">
       <div class="row">
-        <div class="col-md-6 text-muted small">
-          Auto-refresh toutes les 60 secondes
+        <div class="col-md-6 text-muted" style="font-size: 1.05rem;">
+          Auto-refresh toutes les 10 secondes
         </div>
-        <div class="col-md-6 text-muted small text-md-end">
+        <div class="col-md-6 text-muted text-md-end" style="font-size: 1.05rem;">
           <span id="last_update">—</span>
         </div>
       </div>
