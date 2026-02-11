@@ -87,24 +87,24 @@ let currentCardIndex = 0;
 
 function renderCard(card) {
   const header = `
-    <div class="card-header bg-white">
+    <div class="card-header bg-white border-bottom-2">
       <div class="d-flex justify-content-between align-items-start">
         <!-- Colonne gauche : titre + chauffeurs -->
         <div>
-          <div class="fw-bold">
+          <div class="fw-bold" style="font-size: 1.5rem;">
             ${esc(card.date)} - ${esc(card.area)}
           </div>
-          <div class="text-muted">
+          <div class="text-muted" style="font-size: 1.1rem;">
             • ${esc(card.drivers)}
           </div>
         </div>
 
         <!-- Colonne droite : Camion + Statut -->
-        <div class="d-inline-flex align-items-center gap-1">
-          <span class="badge text-bg-dark">
+        <div class="d-inline-flex align-items-center gap-2">
+          <span class="badge text-bg-dark" style="font-size: 1rem; padding: 0.6rem 1rem;">
             Camion ${esc(card.truck)}
           </span>
-          <span class="badge ${esc(card.status_badge_class || 'text-bg-secondary')}">
+          <span class="badge ${esc(card.status_badge_class || 'text-bg-secondary')}" style="font-size: 1rem; padding: 0.6rem 1rem;">
             ${esc(card.status_label)}
           </span>
         </div>
@@ -116,21 +116,21 @@ function renderCard(card) {
     const timeBadgeClass = p.time_badge_class || p.badge_class;
 
     const time = p.x_time_from
-      ? `<span class="badge ${esc(timeBadgeClass)} me-2">${esc(p.x_time_from)}</span>`
+      ? `<span class="badge ${esc(timeBadgeClass)} me-3" style="font-size: 0.95rem; padding: 0.5rem 0.8rem;">${esc(p.x_time_from)}</span>`
       : "";
-    const city = p.x_city ? `<span class="text-muted ms-2">• ${esc(p.x_city)}</span>` : "";
+    const city = p.x_city ? `<span class="text-muted ms-3" style="font-size: 1rem;">• ${esc(p.x_city)}</span>` : "";
     const name = p.partner_name || "";
     const bl = p.name || "";
 
     return `
-      <div class="list-group-item d-flex justify-content-between align-items-center ${esc(p.row_class)}">
+      <div class="list-group-item d-flex justify-content-between align-items-center ${esc(p.row_class)}" style="font-size: 1.15rem; padding: 1.5rem;">
         <div class="text-truncate">
           ${time}
           <span class="fw-semibold">${esc(name)}</span>
           ${city}
         </div>
         <div class="ms-3 text-nowrap">
-          <span class="badge text-bg-light border">${esc(bl)}</span>
+          <span class="badge text-bg-light border" style="font-size: 0.95rem; padding: 0.5rem 0.8rem;">${esc(bl)}</span>
         </div>
       </div>
     `;
