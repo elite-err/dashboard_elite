@@ -183,6 +183,8 @@ async function refreshDeliveries() {
   }
 }
 
+let lastRenderedCardIndex = null;
+
 function displayCurrentCard() {
   const container = document.getElementById("deliveries_container");
   const navContainer = document.getElementById("nav_controls");
@@ -191,24 +193,35 @@ function displayCurrentCard() {
 
   const card = allCards[currentCardIndex];
 
-  // Créer un wrapper pour la nouvelle carte
+  // Vérifie si on change réellement de carte
+  const isCardChanged = lastRenderedCardIndex !== currentCardIndex;
+
+  // Créer le wrapper
   const newCardWrapper = document.createElement("div");
-  newCardWrapper.className = "col-12 card-fade"; // opacité 0 au départ
+  newCardWrapper.className = "col-12";
   newCardWrapper.innerHTML = renderCard(card);
 
-  // Ajouter au DOM AVANT de déclencher la transition
-  container.innerHTML = ""; // vide l’ancienne carte
+  // Vider et injecter dans le DOM
+  container.innerHTML = "";
   container.appendChild(newCardWrapper);
 
-  // Forcer le navigateur à calculer les styles avant d'ajouter 'show'
-  void newCardWrapper.offsetWidth;
+  // Jouer l’animation uniquement si la carte change
+  if (isCardChanged) {
+    newCardWrapper.classList.add("card-fade");
+    void newCardWrapper.offsetWidth;
+    newCardWrapper.classList.add("show");
+  }
 
-  // Ajouter la classe pour fade-in
-  newCardWrapper.classList.add("show");
+  // Mettre à jour la référence
+  lastRenderedCardIndex = currentCardIndex;
 
   // Mettre à jour le compteur
-  navContainer.innerHTML = `<span class="text-muted mx-2" style="font-size: 1.65rem;">${currentCardIndex + 1} / ${allCards.length}</span>`;
+  navContainer.innerHTML =
+    `<span class="text-muted mx-2" style="font-size: 1.65rem;">
+      ${currentCardIndex + 1} / ${allCards.length}
+     </span>`;
 }
+
 
 const shownextCard = () => {
   if (!allCards.length) return;
