@@ -272,14 +272,24 @@ def deliveries():
                 p["row_class"] = "list-group-item-success"
                 p["badge_class"] = "text-bg-success"
             
-            elif st == "waiting" or st == "confirmed":
-                # waiting = jaune
-                p["row_class"] = "list-group-item-warning"
-                p["badge_class"] = "text-bg-warning"
-
             elif st == "cancel":
                 p["row_class"] = "list-group-item-danger"
                 p["badge_class"] = "text-bg-danger"
+
+            elif st == "assigned":
+                # ✅ assigned = bleu (prêt)
+                p["row_class"] = "list-group-item-info"
+                p["badge_class"] = "text-bg-info"
+
+            elif st == "waiting" or st == "confirmed":
+                # ✅ waiting/confirmed = jaune (en attente)
+                p["row_class"] = "list-group-item-warning"
+                p["badge_class"] = "text-bg-warning"
+
+            elif st == "draft":
+                # ✅ draft = gris (brouillon)
+                p["row_class"] = "list-group-item-secondary"
+                p["badge_class"] = "text-bg-secondary"
 
             else:
                 # ✅ pas done : bleu si confirmé, sinon gris

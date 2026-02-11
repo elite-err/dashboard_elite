@@ -49,14 +49,45 @@
     
     <!-- Legend for status colors -->
     <div class="mt-4">
-      <h5>Legend for Delivery Status Colors</h5>
-      <ul class="list-unstyled">
-        <li><span class="badge text-bg-success">Done</span>: Livraison complètée</li>
-        <li><span class="badge text-bg-warning">Waiting</span>: Livraisons en attente de traitement</li>
-        <li><span class="badge text-bg-danger">Cancelled</span>: Livraisons annulées</li>
-        <!--<li><span class="badge text-bg-primary">Confirmed</span>: Livraisons confirmées mais pas encore complétées</li>-->
-        <li><span class="badge text-bg-secondary">Pending</span>: Livraisons en cours de traitement</li>
-      </ul>
+      <div class="card">
+        <div class="card-header bg-dark text-white">
+          <h5 class="mb-0">Légende des statuts</h5>
+        </div>
+        <div class="card-body">
+          <div class="row g-3">
+            <div class="col-md-6 col-lg-4">
+              <div class="d-flex align-items-center gap-2">
+                <span class="badge text-bg-success">●</span>
+                <span><strong>Terminé</strong> - Livraison complétée</span>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <div class="d-flex align-items-center gap-2">
+                <span class="badge text-bg-info">●</span>
+                <span><strong>Prêt</strong> - Assigné et prêt pour la livraison</span>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <div class="d-flex align-items-center gap-2">
+                <span class="badge text-bg-warning">●</span>
+                <span><strong>En attente</strong> - En attente d'une autre opération</span>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <div class="d-flex align-items-center gap-2">
+                <span class="badge text-bg-secondary">●</span>
+                <span><strong>Brouillon</strong> - En cours de préparation</span>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <div class="d-flex align-items-center gap-2">
+                <span class="badge text-bg-danger">●</span>
+                <span><strong>Annulé</strong> - Livraison annulée</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     
     <!-- Footer info -->
