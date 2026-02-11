@@ -200,51 +200,27 @@ function displayCurrentCard() {
   `;
 
   // Afficher les contrôles de navigation
-  navContainer.innerHTML = `
-    <button id="prev_btn" class="btn btn-sm btn-secondary" ${currentCardIndex === 0 ? 'disabled' : ''}>
-      <i class="fa-solid fa-chevron-left"></i> Précédent
-    </button>
-    <span class="text-muted mx-2">${currentCardIndex + 1} / ${allCards.length}</span>
-    <button id="next_btn" class="btn btn-sm btn-secondary" ${currentCardIndex === allCards.length - 1 ? 'disabled' : ''}>
-      Suivant <i class="fa-solid fa-chevron-right"></i>
-    </button>
-  `;
-
-  document.getElementById("prev_btn").addEventListener("click", () => {
-    if (currentCardIndex > 0) {
-      currentCardIndex--;
-      displayCurrentCard();
-    }
-  });
-
-  document.getElementById("next_btn").addEventListener("click", () => {
-    if (currentCardIndex < allCards.length - 1) {
-      currentCardIndex++;
-      displayCurrentCard();
-    }
-  });
+  navContainer.innerHTML = `<span class="text-muted mx-2">${currentCardIndex + 1} / ${allCards.length}</span>`;
 }
 
-// Auto-scroll de bas en haut et inversement (pour les écrans sans scroll physique)
-var scrollIsDown = false;
-function pageScroll() {
-    // Si on est en bas -> on remonte
-    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight) {
-        scrollIsDown = false;
-    }
-    // Si on est en haut -> on redescend
-    if (window.scrollY <= 0) {
-        scrollIsDown = true;
-    }
+var goingBackCard = false;
+shownextCard = () => {
+  if (currentCardIndex < allCards.length - 1) {
+    goingBackCard = false;
+  } else {
+    goingBackCard = true;
+  }
 
-    if (scrollIsDown)
-        window.scrollBy(0, 1);
-    else
-        window.scrollBy(0, -1);
+  if(goingBackCard) {
+    currentCardIndex--;
+  }else{
+    currentCardIndex++;
+  }
 
-    setTimeout(pageScroll, 10);
-}
+  displayCurrentCard()
+};
 
 
 refreshDeliveries();
 setInterval(refreshDeliveries, 10000);
+setInterval(shownextCard, 15000);
