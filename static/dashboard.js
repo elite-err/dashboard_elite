@@ -19,7 +19,7 @@ function renderProgressKpi(k) {
 
   if (!k.active || k.active <= 0) {
     return `
-      <div class="p-3 border-top bg-white text-muted">
+      <div class="p-3 border-top bg-white text-muted" style="font-size: 1.1rem;">
         Progression livraison : aucun BL actif
       </div>
     `;
@@ -28,22 +28,21 @@ function renderProgressKpi(k) {
   const pct = Math.max(0, Math.min(100, k.pct ?? 0));
   const truckLeft = Math.max(3, Math.min(97, pct + 2));
 
-
   return `
     <div class="p-3 border-top bg-white">
       <div class="d-flex justify-content-between align-items-center mb-2">
-        <div class="fw-semibold">Progression livraison</div>
-        <div class="fw-semibold">${pct}%</div>
+        <div class="fw-semibold" style="font-size: 1.2rem;">Progression livraison</div>
+        <div class="fw-semibold" style="font-size: 1.2rem;">${pct}%</div>
       </div>
 
-      <div class="progress-wrap">
+      <div class="progress-wrap" style="height: 30px;">
         <div class="progress" role="progressbar"
-             aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100">
+             aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100"
+             style="height: 100%;">
           <div class="progress-bar bg-success" style="width: ${pct}%"></div>
         </div>
 
-        <!-- 🚚 Font Awesome -->
-        <i class="fa-solid fa-truck truck" style="left:${truckLeft}%"></i>
+        <i class="fa-solid fa-truck truck" style="left:${truckLeft}%; font-size: 32px;"></i>
       </div>
     </div>
   `;
@@ -59,7 +58,7 @@ function renderCustomerConfirmationKpi(k) {
 
   if (!k.active || k.active <= 0) {
     return `
-      <div class="p-3 border-top bg-white text-muted">
+      <div class="p-3 border-top bg-white text-muted" style="font-size: 1.1rem;">
         Confirmation client : aucun BL actif
       </div>
     `;
@@ -70,12 +69,13 @@ function renderCustomerConfirmationKpi(k) {
   return `
     <div class="p-3 border-top bg-white">
       <div class="d-flex justify-content-between align-items-center mb-2">
-        <div class="fw-semibold">Confirmation client</div>
-        <div class="fw-semibold">${pct}%</div>
+        <div class="fw-semibold" style="font-size: 1.2rem;">Confirmation client</div>
+        <div class="fw-semibold" style="font-size: 1.2rem;">${pct}%</div>
       </div>
 
       <div class="progress" role="progressbar"
-           aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100">
+           aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100"
+           style="height: 25px;">
         <div class="progress-bar bg-primary" style="width: ${pct}%"></div>
       </div>
     </div>
@@ -90,18 +90,18 @@ function renderCard(card) {
     <div class="card-header">
       <div class="d-flex justify-content-between align-items-start">
         <div>
-          <div class="fw-bold">
+          <div class="fw-bold" style="font-size: 1.85rem;">
             ${esc(card.date)} - ${esc(card.area)}
           </div>
-          <div class="text-muted">
+          <div class="text-muted" style="font-size: 1.25rem;">
             • ${esc(card.drivers)}
           </div>
         </div>
         <div class="d-flex align-items-center gap-2">
-          <span class="badge text-bg-dark">
+          <span class="badge text-bg-dark" style="font-size: 1.05rem; padding: 0.65rem 1.1rem;">
             Camion ${esc(card.truck)}
           </span>
-          <span class="badge ${esc(card.status_badge_class || 'text-bg-secondary')}">
+          <span class="badge ${esc(card.status_badge_class || 'text-bg-secondary')}" style="font-size: 1.05rem; padding: 0.65rem 1.1rem;">
             ${esc(card.status_label)}
           </span>
         </div>
@@ -112,9 +112,9 @@ function renderCard(card) {
   const lines = (card.pickings || []).map(p => {
     const timeBadgeClass = p.time_badge_class || p.badge_class;
     const time = p.x_time_from
-      ? `<span class="badge ${esc(timeBadgeClass)} me-3">${esc(p.x_time_from)}</span>`
+      ? `<span class="badge ${esc(timeBadgeClass)} me-3" style="font-size: 1.05rem; padding: 0.6rem 1rem;">${esc(p.x_time_from)}</span>`
       : "";
-    const city = p.x_city ? `<span class="text-muted ms-2">• ${esc(p.x_city)}</span>` : "";
+    const city = p.x_city ? `<span class="text-muted ms-2" style="font-size: 1.1rem;">• ${esc(p.x_city)}</span>` : "";
     const name = p.partner_name || "";
     const bl = p.name || "";
 
@@ -122,11 +122,11 @@ function renderCard(card) {
       <div class="list-group-item d-flex justify-content-between align-items-center ${esc(p.row_class)}">
         <div class="text-truncate flex-grow-1">
           ${time}
-          <span class="fw-semibold">${esc(name)}</span>
+          <span class="fw-semibold" style="font-size: 1.3rem;">${esc(name)}</span>
           ${city}
         </div>
         <div class="ms-3 text-nowrap">
-          <span class="badge text-bg-light border">${esc(bl)}</span>
+          <span class="badge text-bg-light border" style="font-size: 1.05rem; padding: 0.6rem 1rem;">${esc(bl)}</span>
         </div>
       </div>
     `;
