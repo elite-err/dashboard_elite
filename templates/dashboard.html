@@ -29,6 +29,14 @@
     pointer-events: none;
     transition: left 700ms ease;
   }
+
+  .footer {
+  position: fixed;
+  bottom: 20px;   /* distance depuis le bas de l'écran */
+  right: 20px;    /* distance depuis la droite */
+  z-index: 1000;  /* pour passer au-dessus des autres éléments */
+}
+
 </style>
 
 
@@ -49,7 +57,7 @@
       </div>
     </main>
     
-    <footer style="position: fixed;">
+    <footer class="footer">
       <!-- Legend for status colors -->
       <div class="mt-4">
         <div class="card">
