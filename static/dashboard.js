@@ -19,7 +19,7 @@ function renderProgressKpi(k) {
 
   if (!k.active || k.active <= 0) {
     return `
-      <div class="p-3 border-top bg-white text-muted" style="font-size: 1.1rem;">
+      <div class="p-3 border-top bg-white text-muted" style="font-size: 1.65rem;">
         Progression livraison : aucun BL actif
       </div>
     `;
@@ -69,8 +69,8 @@ function renderCustomerConfirmationKpi(k) {
   return `
     <div class="p-3 border-top bg-white">
       <div class="d-flex justify-content-between align-items-center mb-2">
-        <div class="fw-semibold" style="font-size: 1.2rem;">Confirmation client</div>
-        <div class="fw-semibold" style="font-size: 1.2rem;">${pct}%</div>
+        <div class="fw-semibold" style="font-size: 1.65rem;">Confirmation client</div>
+        <div class="fw-semibold" style="font-size: 1.65rem;">${pct}%</div>
       </div>
 
       <div class="progress" role="progressbar"
