@@ -191,21 +191,23 @@ if (refreshBtn) {
   refreshBtn.addEventListener("click", refreshDeliveries);
 }
 
-// Source - https://stackoverflow.com/a/9837823
-// Posted by Michael Zaporozhets, modified by community. See post 'Timeline' for change history
-// Retrieved 2026-02-11, License - CC BY-SA 3.0
 var scrollIsDown = false;
 function pageScroll() {
+    // Si on est en bas -> on remonte
     if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight) {
+        scrollIsDown = false;
+    }
+    // Si on est en haut -> on redescend
+    if (window.scrollY <= 0) {
         scrollIsDown = true;
     }
 
     if (scrollIsDown)
-      window.scrollBy(0, 1);
+        window.scrollBy(0, 1);
     else
-      window.scrollBy(0, -1);
-    
-    scrolldelay = setTimeout(pageScroll,10);
+        window.scrollBy(0, -1);
+
+    setTimeout(pageScroll, 10);
 }
 
 
