@@ -189,6 +189,8 @@ function displayCurrentCard() {
   
   if (!allCards.length) return;
 
+  playAnimation(container.firstElementChild); // Animer la nouvelle carte
+
   const card = allCards[currentCardIndex];
   container.innerHTML = `
     <div class="col-12">
@@ -198,6 +200,15 @@ function displayCurrentCard() {
 
   // Afficher les contrôles de navigation
   navContainer.innerHTML = `<span class="text-muted mx-2" style="font-size: 1.65rem;">${currentCardIndex + 1} / ${allCards.length}</span>`;
+}
+
+function playAnimation(element) {
+  element.classList.add("animate-slideFade");
+
+  //Pour pouvoir rejouer l'animation plus tard :
+  element.addEventListener("animationend", () => {
+    element.classList.remove("animate-slideFade");
+  }, { once: true });
 }
 
 const shownextCard = () => {
