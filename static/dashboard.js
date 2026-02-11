@@ -87,24 +87,21 @@ let currentCardIndex = 0;
 
 function renderCard(card) {
   const header = `
-    <div class="card-header bg-white border-bottom-2">
+    <div class="card-header">
       <div class="d-flex justify-content-between align-items-start">
-        <!-- Colonne gauche : titre + chauffeurs -->
         <div>
-          <div class="fw-bold" style="font-size: 1.5rem;">
+          <div class="fw-bold">
             ${esc(card.date)} - ${esc(card.area)}
           </div>
-          <div class="text-muted" style="font-size: 1.1rem;">
+          <div class="text-muted">
             • ${esc(card.drivers)}
           </div>
         </div>
-
-        <!-- Colonne droite : Camion + Statut -->
-        <div class="d-inline-flex align-items-center gap-2">
-          <span class="badge text-bg-dark" style="font-size: 1rem; padding: 0.6rem 1rem;">
+        <div class="d-flex align-items-center gap-2">
+          <span class="badge text-bg-dark">
             Camion ${esc(card.truck)}
           </span>
-          <span class="badge ${esc(card.status_badge_class || 'text-bg-secondary')}" style="font-size: 1rem; padding: 0.6rem 1rem;">
+          <span class="badge ${esc(card.status_badge_class || 'text-bg-secondary')}">
             ${esc(card.status_label)}
           </span>
         </div>
@@ -114,39 +111,35 @@ function renderCard(card) {
 
   const lines = (card.pickings || []).map(p => {
     const timeBadgeClass = p.time_badge_class || p.badge_class;
-
     const time = p.x_time_from
-      ? `<span class="badge ${esc(timeBadgeClass)} me-3" style="font-size: 0.95rem; padding: 0.5rem 0.8rem;">${esc(p.x_time_from)}</span>`
+      ? `<span class="badge ${esc(timeBadgeClass)} me-3">${esc(p.x_time_from)}</span>`
       : "";
-    const city = p.x_city ? `<span class="text-muted ms-3" style="font-size: 1rem;">• ${esc(p.x_city)}</span>` : "";
+    const city = p.x_city ? `<span class="text-muted ms-2">• ${esc(p.x_city)}</span>` : "";
     const name = p.partner_name || "";
     const bl = p.name || "";
 
     return `
-      <div class="list-group-item d-flex justify-content-between align-items-center ${esc(p.row_class)}" style="font-size: 1.15rem; padding: 1.5rem;">
-        <div class="text-truncate">
+      <div class="list-group-item d-flex justify-content-between align-items-center ${esc(p.row_class)}">
+        <div class="text-truncate flex-grow-1">
           ${time}
           <span class="fw-semibold">${esc(name)}</span>
           ${city}
         </div>
         <div class="ms-3 text-nowrap">
-          <span class="badge text-bg-light border" style="font-size: 0.95rem; padding: 0.5rem 0.8rem;">${esc(bl)}</span>
+          <span class="badge text-bg-light border">${esc(bl)}</span>
         </div>
       </div>
     `;
   }).join("");
 
-  // ✅ Règles d'affichage selon le statut (clé du selection)
   const showDeliveryProgress = (card.status === "on_the_way");
   const showConfirmProgress  = (card.status === "open" || card.status === "full");
 
   const body = `
-    <div class="card-body p-0">
+    <div class="card-body">
       <div class="list-group list-group-flush">
         ${lines || `<div class="list-group-item text-muted">Aucun BL</div>`}
       </div>
-
-      <!-- ✅ Sous-cards KPI (conditionnées par statut) -->
       ${showDeliveryProgress ? renderProgressKpi(card.kpi_progress) : ""}
       ${showConfirmProgress ? renderCustomerConfirmationKpi(card.kpi_customer_confirmation) : ""}
     </div>
